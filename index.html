@@ -6,40 +6,73 @@
     <link rel="stylesheet" href="./dist/output.css" />
     <script src="./src/script.js" defer></script>
   </head>
-  <body class="bg-gray-100">
-    <header></header>
-    <main>
+  <body class="bg-white">
+    <header class="flex justify-center pt-2">JukeLog</header>
+    <main class="flex flex-col justify-center items-center">
       <div
         id="modal-container"
         class="hidden fixed inset-0 bg-black/50 items-center justify-center z-60"
       >
-        
-        <form id="modal" class="bg-white rounded-xl p-6 flex flex-col gap-5 w-full max-w-md">
-          <button id="close-modal-btn" type="button" data-action="close" class="self-start">X</button>
-          <label for="title">Title:
-            <input type="text" id="title" name="title" required />
+        <form
+          id="modal"
+          class="bg-white rounded-xl p-6 flex flex-col items-center gap-5 w-full max-w-md"
+        >
+          <button
+            id="close-modal-btn"
+            type="button"
+            data-action="close"
+            class="self-start"
+          >
+            X
+          </button>
+          <label for="title" class="flex items-center gap-3">
+            <span class="w-20 text-right">Title:</span>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              class="bg-gray-100 rounded"
+              required
+            />
           </label>
-          
 
-          <label for="artist">Artist:
-            <input type="text" id="artist" name="artist" required />
-          </label>
-          
+          <label for="artist" class="flex items-center gap-3">
+            <span class="w-20 text-right">artist:</span>
 
-          <label for="year">Year:
-            <input type="number" id="year" name="year" />
+            <input
+              type="text"
+              id="artist"
+              name="artist"
+              class="bg-gray-100 rounded"
+              required
+            />
           </label>
-          
 
-          <label for="genre">Genre:
-            <input type="text" id="genre" name="genre" />
-          </label>
-          
+          <label for="year" class="flex items-center gap-3">
+            <span class="w-20 text-right">Year:</span>
 
-          <label for="played">Played:
-            <input type="checkbox" id="played" name="played" />
+            <input
+              type="number"
+              id="year"
+              name="year"
+              class="bg-gray-100 rounded"
+            />
           </label>
-          
+
+          <label for="genre" class="flex items-center gap-3">
+            <span class="w-20 text-right">Genre:</span>
+            <input
+              type="text"
+              id="genre"
+              name="genre"
+              class="bg-gray-100 rounded"
+            />
+          </label>
+
+          <label for="played" class="flex items-center gap-3">
+            <span class="w-20 text-right">Played:</span>
+            <input type="checkbox" id="played" name="played" class="" />
+          </label>
 
           <button
             type="submit"
@@ -50,42 +83,50 @@
         </form>
       </div>
 
-      <div class="btns">
+      <div class="btns py-4">
         <button
           id="add-album-btn"
           data-action="add"
-          class="bg-green-500 text-white px-2 py-1 rounded mr-2"
+          class="bg-white text-sm border border-gray-900 rounded-2xl px-2 py-1 mr-1 shadow-gray-500 shadow-sm hover:bg-black hover:text-white"
         >
-          Add Album
+          Add album
         </button>
         <button
           id="edit-album-btn"
           data-action="open-menu"
-          class="bg-blue-500 text-white px-2 py-1 rounded mr-2"
+          class="bg-white text-sm border border-gray-900 rounded-2xl px-2 py-1 mr-1 shadow-gray-500 shadow-sm hover:bg-black hover:text-white"
         >
-          Edit Album
+          Edit album
         </button>
         <button
           id="delete-album-btn"
           data-action="open-menu"
-          class="bg-red-500 text-white px-2 py-1 rounded mr-2"
+          class="bg-white text-sm border border-gray-900 rounded-2xl px-2 py-1 mr-1 shadow-gray-500 shadow-sm hover:bg-black hover:text-white"
         >
-          delete
+          Delete
         </button>
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Artist</th>
-            <th>Year</th>
-            <th>Genre</th>
-            <th>Played</th>
-          </tr>
-        </thead>
-        <tbody id="table-body"></tbody>
-      </table>
+      <div
+        class="overflow-y-auto border border-gray-900 rounded-2xl shadow-md shadow-gray-500"
+      >
+        <table class="min-w-full text-sm text-left border-collapse">
+          <thead class="bg-gray-100 text-gray-700 top-0">
+            <tr>
+              <th class="px-4 py-3 text-left font-semibold">Title</th>
+              <th class="px-4 py-3 text-left font-semibold">Artist</th>
+              <th class="px-4 py-3 text-left font-semibold">Year</th>
+              <th class="px-4 py-3 text-left font-semibold">Genre</th>
+              <th class="px-4 py-3 font-semibold text-center">Played</th>
+              <th class="action px-4 py-3 font-semibold text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody
+            id="table-body"
+            class="divide-y divide-gray-500 transition"
+          ></tbody>
+        </table>
+      </div>
     </main>
 
     <footer></footer>

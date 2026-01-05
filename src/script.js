@@ -1,4 +1,5 @@
 let albums = [];
+const actionCol = document.querySelector(".action");
 const table = document.querySelector("#table-body");
 const btns = document.querySelector(".btns");
 const modal = document.querySelector("#modal-container");
@@ -27,12 +28,15 @@ function renderTable() {
   albums.forEach((item) => {
     const row = document.createElement("tr");
     row.innerHTML = `
-        <td>${item.title}</td>
-        <td>${item.artist}</td>
-        <td>${item.year}</td>
-        <td>${item.genre}</td>
-        <td>${item.played ? "✅" : "❌"}</td>
+        <td class="px-4 py-3 font-medium">${item.title}</td>
+        <td class="px-4 py-3 font-medium">${item.artist}</td>
+        <td class="px-4 py-3 font-medium">${item.year}</td>
+        <td class="px-4 py-3 font-medium">${item.genre}</td>
+        <td class="px-4 py-3 font-medium text-center">${
+          item.played ? "✅" : "❌"
+        }</td>
         `;
+    actionCol.classList.add("hidden");
     table.appendChild(row);
   });
 }
@@ -43,35 +47,41 @@ function renderWithButtons() {
     const row = document.createElement("tr");
 
     row.innerHTML = `
-        <td>${item.title}</td>
-        <td>${item.artist}</td>
-        <td>${item.year}</td>
-        <td>${item.genre}</td>
-        <td>${item.played ? "✅" : "❌"}</td>
+        <td class="px-4 py-3 font-medium">${item.title}</td>
+        <td class="px-4 py-3 font-medium">${item.artist}</td>
+        <td class="px-4 py-3 font-medium">${item.year}</td>
+        <td class="px-4 py-3 font-medium">${item.genre}</td>
+        <td class="px-4 py-3 font-medium text-center">${
+          item.played ? "✅" : "❌"
+        }</td>
         `;
 
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.textContent = "x";
+    btn.textContent = "🗑️";
     btn.dataset.action = "delete";
     btn.dataset.index = index;
+    btn.style.marginRight = "1rem";
     const editBtn = document.createElement("button");
     editBtn.type = "button";
-    editBtn.textContent = "edit";
+    editBtn.textContent = "✏️";
     editBtn.dataset.index = index;
     editBtn.dataset.action = "edit";
-
     const actionTd = document.createElement("td");
-    actionTd.appendChild(btn);
-    actionTd.appendChild(editBtn);
+    actionTd.className = "px-4 py-3";
+    const actionWrapper = document.createElement("div");
+    actionWrapper.className = "flex justify-center";
+    actionWrapper.appendChild(btn);
+    actionWrapper.appendChild(editBtn);
+    actionTd.appendChild(actionWrapper);
     row.appendChild(actionTd);
     table.appendChild(row);
+    actionCol.classList.remove("hidden");
   });
 }
 
 btns.addEventListener("click", (e) => {
   if (e.target.tagName !== "BUTTON") {
-    console.log("not a button");
     return;
   }
   const { action } = e.target.dataset;
